@@ -1,96 +1,199 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Box, Target, Combine, Database, ShieldAlert, Cpu } from "lucide-react";
+import {
+  ArrowRight,
+  Box,
+  Target,
+  Combine,
+  Shield,
+  Cpu,
+  Building2,
+  Home,
+  Link2,
+  Sprout,
+  Users,
+} from "lucide-react";
 import { useRef } from "react";
+
+const HOUSED = [
+  {
+    name: "Orbital Systems & Assurance (OSA)",
+    role: "Institutional standards and assurance",
+    Icon: Shield,
+  },
+  {
+    name: "Lunar Reserve Residences",
+    role: "Luxury real assets · premium habitation",
+    Icon: Home,
+  },
+  {
+    name: "Lunar Reserve Commons",
+    role: "Dignified, standardized civic habitation",
+    Icon: Building2,
+  },
+  {
+    name: "LunarLink Systems™",
+    role: "Prime contractor · cislunar infrastructure integrator",
+    Icon: Link2,
+  },
+  {
+    name: "Continuum Uplink™",
+    role: "Connectivity layer under LunarLink Systems™",
+    Icon: Cpu,
+  },
+  {
+    name: "Lunar Balance Initiative",
+    role: "Philanthropy-funded subsidiary · sustainable agriculture systems",
+    Icon: Sprout,
+  },
+  {
+    name: "Lunar Trade Bureau",
+    role: "Workforce pipeline · training · credentialing",
+    Icon: Users,
+  },
+] as const;
+
+const HEADLINES = [
+  "A permanent horizon for human operations.",
+  "Continuity is a system. We are extending it.",
+  "Infrastructure first. Settlement follows.",
+];
 
 export default function Lander() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 0.2], ["0%", "15%"]);
-  const opacityFade = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.25], ["0%", "8%"]);
+  const opacityFade = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#F7F7F5] text-[#2B2E34] font-['IBM_Plex_Sans'] selection:bg-[#FF6A13] selection:text-white">
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-[calc(100vh-72px)] w-full flex flex-col justify-between overflow-hidden bg-[#0B0C0F]">
+    <div
+      ref={containerRef}
+      className="relative w-full bg-paper text-charcoal font-sans selection:bg-safety-orange selection:text-paper"
+    >
+      {/* Hero — big quiet image field, metadata anchored */}
+      <section className="relative flex min-h-[calc(100vh-5rem)] w-full flex-col justify-between overflow-hidden bg-vacuum">
         <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C0F] via-transparent to-transparent z-10" />
+          <div
+            className="absolute inset-0 z-10 bg-gradient-to-t from-vacuum via-vacuum/20 to-transparent"
+            aria-hidden
+          />
           <img
-            src="https://images.unsplash.com/photo-1775571921496-f38f4958f341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb29uJTIwZWFydGglMjBob3Jpem9uJTIwYXJ0ZW1pc3xlbnwxfHx8fDE3NzYyOTU0MjB8MA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Lunar Horizon Survey"
-            className="w-full h-full object-cover object-top opacity-70 grayscale contrast-105"
+            src="https://images.unsplash.com/photo-1775571921496-f38f4958f341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb29uJTIwZWFydGglMjBob3Jpem9uJTIwYXJ0ZW1pc3xlbnwxfHx8fDE3NzYyOTU0MjB8MA&ixlib=rb-4.1.0&q=80&w=1920"
+            alt=""
+            className="h-full w-full object-cover object-top opacity-[0.72] contrast-[1.05] grayscale"
           />
         </motion.div>
 
-        <div className="relative z-10 p-6 md:p-12 lg:p-24 mt-24">
+        <div className="relative z-10 mt-20 px-6 md:mt-24 md:px-12 lg:px-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl space-y-6"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.05] font-semibold text-[#F7F7F5] tracking-tight">
-              We do not "go" to the Moon.
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-lunar-grey">
+              Program umbrella · LUNAR ADVANCE™
+            </p>
+            <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight text-paper md:text-6xl lg:text-7xl">
+              We do not &ldquo;go&rdquo; to the Moon.
               <br />
               We extend continuity to it.
             </h1>
-            <p className="text-lg md:text-xl font-normal text-[#D1D4D6] max-w-xl leading-relaxed">
-              LUNAR ADVANCE™ is extending Earth’s supply chains, energy systems, and research corridors. The lunar surface is a place where permanence is not a dream, but a procurement decision.
+            <p className="max-w-xl text-lg font-normal leading-relaxed text-lunar-grey md:text-xl">
+              LUNAR ADVANCE™ extends Earth&rsquo;s supply chains, energy systems,
+              and research corridors. The lunar surface is where permanence is not a
+              dream, but a procurement decision: staged, governed, insured, and
+              inside the operational envelope.
             </p>
           </motion.div>
         </div>
 
         <motion.div
           style={{ opacity: opacityFade }}
-          className="relative z-10 p-6 md:p-12 lg:p-24 flex justify-between items-end font-['IBM_Plex_Mono'] text-[10px] uppercase tracking-widest text-[#D1D4D6]"
+          className="relative z-10 flex flex-col gap-4 border-t border-lunar-grey/30 px-6 py-6 font-mono text-[10px] uppercase tracking-[0.2em] text-lunar-grey md:flex-row md:items-end md:justify-between md:px-12 lg:px-24"
         >
           <div className="flex flex-col gap-1">
-            <span>LUNAR ADVANCE™ / Asset Capture / A2-LF-042</span>
-            <span>Nearside Ridge Survey / 02:14 UTC / Rev. C</span>
+            <span>
+              LUNAR ADVANCE™ / Asset Capture / A2-LF-042 / Nearside Ridge Survey /
+              02:14 UTC / Rev. C
+            </span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[#FF6A13]">Operational Scroll</span>
-            <ArrowRight className="w-3 h-3 rotate-90 text-[#FF6A13]" />
+          <div className="flex items-center gap-2 text-safety-orange">
+            <span>Operational scroll</span>
+            <ArrowRight className="h-3 w-3 rotate-90" aria-hidden />
           </div>
         </motion.div>
       </section>
 
-      {/* 2. FRONTIER MARKET (Managed Growth) */}
-      <section className="relative w-full py-32 px-6 md:px-12 lg:px-24 border-b border-[#D1D4D6]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="md:col-span-5 flex flex-col justify-center gap-8"
+      {/* Sample headlines — alternate bank */}
+      <section
+        className="border-b border-lunar-grey bg-paper px-6 py-12 md:px-12 lg:px-24"
+        aria-labelledby="headlines-label"
+      >
+        <div className="mx-auto max-w-7xl">
+          <p
+            id="headlines-label"
+            className="mb-6 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal/60"
           >
-            <div className="font-['IBM_Plex_Mono'] text-[10px] tracking-widest text-[#2B2E34] uppercase flex items-center gap-4">
+            Approved headline bank
+          </p>
+          <ul className="grid gap-4 md:grid-cols-3 md:gap-8">
+            {HEADLINES.map((line) => (
+              <li
+                key={line}
+                className="border-l-2 border-safety-orange pl-4 text-base font-semibold leading-snug text-charcoal md:text-lg"
+              >
+                {line}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 font-mono text-[10px] uppercase tracking-widest text-charcoal/45">
+            Alternate: Governed expansion. / Measured risk. Durable return. /
+            Stewardship at lunar scale.
+          </p>
+        </div>
+      </section>
+
+      {/* Pillar 01 + image */}
+      <section className="border-b border-lunar-grey px-6 py-24 md:px-12 lg:px-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9 }}
+            className="flex flex-col justify-center gap-8 md:col-span-5"
+          >
+            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
               <span>01</span>
-              <span className="w-8 h-[1px] bg-[#2B2E34]"></span>
+              <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Frontier Market</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-[#2B2E34]">
-              Risk modeled and systematized.
+            <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-4xl">
+              Managed growth. Risk modeled and systematized.
             </h2>
-            <p className="text-base text-[#2B2E34]/80 leading-relaxed">
-              The Moon becomes a new capital destination defined by long-horizon asset classes: transport corridors, energy capture, communications relays, and habitat real estate. Risk is not eliminated, but fully governed.
+            <p className="leading-relaxed text-charcoal/80">
+              The Moon becomes a capital destination defined by long-horizon asset
+              classes: transport corridors, energy capture, communications relays,
+              and habitat real estate. Risk is not eliminated; it is governed.
             </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-[#D1D4D6]">
+            <div className="grid grid-cols-1 gap-8 border-t border-lunar-grey pt-8 sm:grid-cols-2">
               <div className="space-y-2">
-                <Target className="w-4 h-4 text-[#FF6A13]" />
-                <h4 className="font-semibold text-sm">Asset Classes</h4>
-                <p className="font-['IBM_Plex_Mono'] text-[10px] uppercase tracking-wider text-[#2B2E34]/60">Class A Corridors</p>
+                <Target className="h-4 w-4 text-safety-orange" aria-hidden />
+                <h3 className="text-sm font-semibold">Asset classes</h3>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+                  Class A corridors
+                </p>
               </div>
               <div className="space-y-2">
-                <Box className="w-4 h-4 text-[#FF6A13]" />
-                <h4 className="font-semibold text-sm">Managed Growth</h4>
-                <p className="font-['IBM_Plex_Mono'] text-[10px] uppercase tracking-wider text-[#2B2E34]/60">Regolith Futures</p>
+                <Box className="h-4 w-4 text-safety-orange" aria-hidden />
+                <h3 className="text-sm font-semibold">Modeled exposure</h3>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+                  Regolith futures
+                </p>
               </div>
             </div>
           </motion.div>
@@ -98,170 +201,259 @@ export default function Lander() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1 }}
-            className="md:col-span-7 relative bg-[#E8E8E8] p-4"
+            className="border border-lunar-grey bg-paper p-3 md:col-span-7"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0B0C0F]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-vacuum">
               <img
-                src="https://images.unsplash.com/photo-1771927579674-e20425bfb859?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb29uJTIwc3VyZmFjZSUyMHNwYWNlJTIwYmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwxfHx8fDE3NzYyOTU0MTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Lunar Surface Assets"
-                className="w-full h-full object-cover grayscale opacity-90 contrast-105"
+                src="https://images.unsplash.com/photo-1771927579674-e20425bfb859?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb29uJTIwc3VyZmFjZSUyMHNwYWNlJTIwYmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwxfHx8fDE3NzYyOTU0MTV8MA&ixlib=rb-4.1.0&q=80&w=1200"
+                alt=""
+                className="h-full w-full object-cover contrast-[1.05] grayscale opacity-90"
               />
-              <div className="absolute top-0 left-0 w-full h-full border-[1px] border-[#FF6A13]/20 pointer-events-none mix-blend-difference" />
+              <div
+                className="pointer-events-none absolute inset-0 border border-safety-orange/15"
+                aria-hidden
+              />
             </div>
-            <div className="mt-4 font-['IBM_Plex_Mono'] text-[10px] uppercase text-[#2B2E34]/60 tracking-wider">
-              Fig 1.1 — Topographical asset survey mapping / Sector 04
-            </div>
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+              Fig 1.1 — Topographical asset survey · Sector 04
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 3. LIFESTYLE UPGRADE & INFRASTRUCTURE */}
-      <section className="relative w-full py-32 px-6 md:px-12 lg:px-24 bg-[#0B0C0F] text-[#F7F7F5]">
-        <div className="max-w-7xl mx-auto flex flex-col-reverse md:grid md:grid-cols-12 gap-12 items-center">
-          
+      {/* Pillar 02 — night field */}
+      <section className="border-b border-lunar-grey bg-vacuum px-6 py-24 text-paper md:px-12 lg:px-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1 }}
-            className="md:col-span-7 relative p-4 bg-[#1A1C23]"
+            className="order-2 border border-lunar-grey/40 bg-vacuum-elevated p-3 md:order-1 md:col-span-7"
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1754638504964-880857928e64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc3Ryb25hdXQlMjBoZWxtZXQlMjBpbnRlcmlvciUyMHNwYWNlfGVufDF8fHx8MTc3NjI5NTQxNnww&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Controlled Environments"
-                className="w-full h-full object-cover grayscale opacity-80 contrast-105"
+                src="https://images.unsplash.com/photo-1754638504964-880857928e64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc3Ryb25hdXQlMjBoZWxtZXQlMjBpbnRlcmlvciUyMHNwYWNlfGVufDF8fHx8MTc3NjI5NTQxNnww&ixlib=rb-4.1.0&q=80&w=1200"
+                alt=""
+                className="h-full w-full object-cover contrast-[1.05] grayscale opacity-85"
               />
-              {/* Wayfinding tick */}
-              <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-[#FF6A13]" />
+              <div
+                className="absolute right-4 top-4 h-4 w-4 border-t-2 border-r-2 border-safety-orange"
+                aria-hidden
+              />
             </div>
-            <div className="mt-4 font-['IBM_Plex_Mono'] text-[10px] uppercase text-[#D1D4D6]/70 tracking-wider">
-              Fig 2.4 — Human-centered performance envelope / Routine Assessment
-            </div>
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-lunar-grey/80">
+              Fig 2.4 — Human-centered performance envelope · Routine assessment
+            </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="md:col-span-5 flex flex-col justify-center gap-8"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9 }}
+            className="order-1 flex flex-col justify-center gap-8 md:order-2 md:col-span-5"
           >
-            <div className="font-['IBM_Plex_Mono'] text-[10px] tracking-widest text-[#D1D4D6] uppercase flex items-center gap-4">
+            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-lunar-grey">
               <span>02</span>
-              <span className="w-8 h-[1px] bg-[#D1D4D6]"></span>
+              <span className="h-px w-8 bg-lunar-grey" aria-hidden />
               <span>Lifestyle Upgrade</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight">
+            <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
               Measurable living outcomes.
             </h2>
-            <p className="text-base text-[#D1D4D6] leading-relaxed">
-              Settlement is reframed as improved living conditions for specific roles: science, operations, governance, family support. We deliver controlled environments, constant health monitoring, and clean-sheet city planning. 
+            <p className="leading-relaxed text-lunar-grey">
+              Settlement is improved conditions for defined roles: science,
+              operations, governance, family support. Controlled environments,
+              health monitoring, and clean-sheet planning make &ldquo;better
+              living&rdquo; a deliverable—not a promise.
             </p>
-            <button className="flex items-center justify-between w-full sm:w-max px-6 py-3 bg-[#FF6A13] text-[#F7F7F5] font-semibold text-sm tracking-wide hover:bg-[#E55A0D] transition-colors duration-300">
-              REVIEW HABITAT PROSPECTUS
-              <ArrowRight className="w-4 h-4 ml-6" />
-            </button>
+            <a
+              href="/brand"
+              className="inline-flex w-full max-w-md items-center justify-between border border-safety-orange bg-safety-orange px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors hover:bg-safety-orange/90 sm:w-max"
+            >
+              Review habitat prospectus
+              <ArrowRight className="ml-4 h-4 w-4" aria-hidden />
+            </a>
           </motion.div>
         </div>
       </section>
 
-      {/* 4. INFRASTRUCTURE & CONTINUITY */}
-      <section className="relative w-full py-32 px-6 md:px-12 lg:px-24 border-b border-[#D1D4D6]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      {/* Pillar 03 — infrastructure */}
+      <section className="border-b border-lunar-grey px-6 py-24 md:px-12 lg:px-24">
+        <div className="mx-auto max-w-7xl space-y-16">
           <div className="max-w-3xl">
-            <div className="font-['IBM_Plex_Mono'] text-[10px] tracking-widest text-[#2B2E34] uppercase flex items-center gap-4 mb-6">
+            <div className="mb-6 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
               <span>03</span>
-              <span className="w-8 h-[1px] bg-[#2B2E34]"></span>
+              <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Infrastructure Opportunity</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-[#2B2E34]">
+            <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-5xl">
               Standards, interoperability, and civil partnerships.
             </h2>
+            <p className="mt-6 leading-relaxed text-charcoal/80">
+              The Moon is a jurisdiction of systems—not a territory. Ports,
+              corridors, and continuity facilities scale when protocols align.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#D1D4D6] pt-12">
+          <div className="grid grid-cols-1 gap-10 border-t border-lunar-grey pt-12 md:grid-cols-3 md:gap-8">
             <div className="space-y-4">
-              <Combine className="w-5 h-5 text-[#FF6A13]" />
-              <h4 className="font-semibold text-lg text-[#2B2E34]">Doors & Corners</h4>
-              <p className="text-sm text-[#2B2E34]/80 leading-relaxed">The Moon is presented as a jurisdiction of systems rather than a territory. Transport logistics scale predictably.</p>
+              <Combine className="h-5 w-5 text-safety-orange" aria-hidden />
+              <h3 className="text-lg font-semibold text-charcoal">
+                Ports &amp; corridors
+              </h3>
+              <p className="text-sm leading-relaxed text-charcoal/80">
+                Transport and logistics follow published interfaces. Growth reads as
+                engineering, not spectacle.
+              </p>
             </div>
             <div className="space-y-4">
-              <ShieldAlert className="w-5 h-5 text-[#FF6A13]" />
-              <h4 className="font-semibold text-lg text-[#2B2E34]">Continuity Facilities</h4>
-              <p className="text-sm text-[#2B2E34]/80 leading-relaxed">Safeguarding knowledge and diversifying supply chains ensure species continuity with mathematical certainty.</p>
+              <Shield className="h-5 w-5 text-safety-orange" aria-hidden />
+              <h3 className="text-lg font-semibold text-charcoal">
+                Continuity facilities
+              </h3>
+              <p className="text-sm leading-relaxed text-charcoal/80">
+                Safeguarding knowledge and diversifying supply chains supports
+                species continuity with procedural clarity.
+              </p>
             </div>
             <div className="space-y-4">
-              <Cpu className="w-5 h-5 text-[#FF6A13]" />
-              <h4 className="font-semibold text-lg text-[#2B2E34]">Public-Private Baseline</h4>
-              <p className="text-sm text-[#2B2E34]/80 leading-relaxed">Our unified protocols bridge global governance frameworks with enterprise uptime requirements seamlessly.</p>
+              <Cpu className="h-5 w-5 text-safety-orange" aria-hidden />
+              <h3 className="text-lg font-semibold text-charcoal">
+                Public–private baseline
+              </h3>
+              <p className="text-sm leading-relaxed text-charcoal/80">
+                Unified protocols bridge multilateral governance with enterprise
+                uptime requirements.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. MORAL INEVITABILITY */}
-      <section className="relative w-full py-32 px-6 md:px-12 lg:px-24 bg-[#E8E8E8]">
-        <div className="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-12 gap-12 items-center">
-          
+      {/* Housed brands — Keystone architecture */}
+      <section
+        className="border-b border-lunar-grey bg-paper px-6 py-24 md:px-12 lg:px-24"
+        aria-labelledby="housed-heading"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 max-w-3xl">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal/60">
+              Keystone architecture
+            </p>
+            <h2
+              id="housed-heading"
+              className="mt-3 text-3xl font-semibold tracking-tight text-charcoal md:text-4xl"
+            >
+              Housed programs &amp; products
+            </h2>
+            <p className="mt-4 leading-relaxed text-charcoal/80">
+              Each line operates under the LUNAR ADVANCE™ umbrella with its own
+              procurement posture—shared governance, discrete accountabilities.
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 gap-px bg-lunar-grey md:grid-cols-2 lg:grid-cols-3">
+            {HOUSED.map(({ name, role, Icon }) => (
+              <li
+                key={name}
+                className="flex flex-col gap-3 bg-paper p-6 transition-colors hover:bg-lunar-grey/20"
+              >
+                <Icon className="h-4 w-4 text-safety-orange" aria-hidden />
+                <p className="font-semibold leading-snug text-charcoal">{name}</p>
+                <p className="font-mono text-[10px] uppercase leading-relaxed tracking-wider text-charcoal/55">
+                  {role}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Pillar 04 — moral inevitability */}
+      <section className="border-b border-lunar-grey bg-lunar-grey/25 px-6 py-24 md:px-12 lg:px-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="md:col-span-5 flex flex-col justify-center gap-8"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9 }}
+            className="flex flex-col justify-center gap-8 md:col-span-5"
           >
-            <div className="font-['IBM_Plex_Mono'] text-[10px] tracking-widest text-[#2B2E34] uppercase flex items-center gap-4">
+            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
               <span>04</span>
-              <span className="w-8 h-[1px] bg-[#2B2E34]"></span>
+              <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Moral Inevitability</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-[#2B2E34]">
+            <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-4xl">
               Responsibility framed as continuity.
             </h2>
-            <p className="text-base text-[#2B2E34]/80 leading-relaxed">
-              The program frames settlement as a responsibility: safeguarding knowledge, diversifying supply chains, and ensuring species continuity. The moral argument is stated, not debated. We commit to responsible stewardship, transparent governance, and human-centered safety.
+            <p className="leading-relaxed text-charcoal/80">
+              Settlement is stewardship: safeguarding knowledge, diversifying
+              supply chains, and supporting species continuity. The moral case is
+              stated—not debated. We commit to responsible stewardship,
+              transparent governance, and human-centered safety.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1 }}
-            className="md:col-span-7 relative p-4 bg-white border border-[#D1D4D6]"
+            className="border border-lunar-grey bg-paper p-3 md:col-span-7"
           >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0B0C0F]">
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-vacuum">
               <img
-                src="https://images.unsplash.com/photo-1770723965117-cffbc9e307a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlYXJ0aCUyMGZyb20lMjBzcGFjZSUyMGJlYXV0aWZ1bHxlbnwxfHx8fDE3NzYyOTU0MTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Earth from Space"
-                className="w-full h-full object-cover grayscale opacity-90 contrast-125"
+                src="https://images.unsplash.com/photo-1770723965117-cffbc9e307a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlYXJ0aCUyMGZyb20lMjBzcGFjZSUyMGJlYXV0aWZ1bHxlbnwxfHx8fDE3NzYyOTU0MTV8MA&ixlib=rb-4.1.0&q=80&w=1600"
+                alt=""
+                className="h-full w-full object-cover contrast-[1.08] grayscale opacity-90"
               />
-              <div className="absolute top-0 right-0 w-1/3 h-full border-l border-[#FF6A13]/30 pointer-events-none mix-blend-difference" />
+              <div
+                className="pointer-events-none absolute right-0 top-0 h-full w-1/3 border-l border-safety-orange/25"
+                aria-hidden
+              />
             </div>
-            <div className="mt-4 font-['IBM_Plex_Mono'] text-[10px] uppercase text-[#2B2E34]/60 tracking-wider">
-              Fig 4.1 — Population continuity planning / Earth Overlay
-            </div>
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+              Fig 4.1 — Population continuity planning · Earth overlay
+            </p>
           </motion.div>
-
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="w-full py-16 px-6 md:px-12 lg:px-24 bg-[#0B0C0F] text-[#D1D4D6]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 font-['IBM_Plex_Mono'] text-[10px] uppercase tracking-widest leading-loose">
-          <div className="flex flex-col gap-2">
-            <span className="text-[#F7F7F5] font-['IBM_Plex_Sans'] text-xl font-semibold mb-4 normal-case tracking-normal">Keystone Space Holdings</span>
-            <span>Program Umbrella: LUNAR ADVANCE™</span>
-            <span>Est. 2026 // Off-World Operations</span>
-            <span className="text-[#FF6A13] mt-4">Authorized Personnel Only</span>
+      {/* Visual metaphor + governance strip */}
+      <section className="border-b border-lunar-grey px-6 py-16 md:px-12 lg:px-24">
+        <div className="mx-auto max-w-7xl font-mono text-[10px] uppercase leading-relaxed tracking-wider text-charcoal/55">
+          <p className="text-charcoal">
+            Visual metaphor: <span className="text-charcoal/80">survey + stewardship</span>
+            . Imagery is treated as licensed library photography—photoreal, minimally
+            altered. Overlays remain archival: captions, coordinates, thin rules—not
+            speculative UI.
+          </p>
+        </div>
+      </section>
+
+      <footer className="bg-vacuum px-6 py-16 text-lunar-grey md:px-12 lg:px-24">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-12 md:flex-row md:items-end">
+          <div className="space-y-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="font-sans text-xl font-semibold normal-case tracking-tight text-paper">
+              Keystone Space Holdings
+            </p>
+            <p>Program umbrella · LUNAR ADVANCE™</p>
+            <p className="text-lunar-grey/70">Internal reference · 2026</p>
+            <p className="mt-4 text-safety-orange">Operational routing</p>
           </div>
-          <div className="flex flex-col gap-2 md:text-right">
-            <span>"Settlement is the operational form of hope."</span>
-            <span className="text-[#D1D4D6]/50">All imagery licensed via NASA Artemis Protocol.</span>
-            <span className="text-[#D1D4D6]/50">CONFIDENTIAL - DO NOT DISTRIBUTE UNLESS CLASSIFIED</span>
+          <div className="max-w-md space-y-3 text-right font-mono text-[10px] uppercase tracking-widest leading-relaxed md:text-right">
+            <p className="text-paper/90">
+              &ldquo;Settlement is the operational form of hope.&rdquo;
+            </p>
+            <p className="text-lunar-grey/60">
+              Lunar photography is presented as neutral captured assets within
+              Keystone&rsquo;s licensed library. No agency endorsement implied;
+              marks and identifiers remain under their owners&rsquo; control.
+            </p>
           </div>
         </div>
       </footer>

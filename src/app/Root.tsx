@@ -1,51 +1,68 @@
 import { Outlet, NavLink, useLocation } from "react-router";
-import { Orbit, Compass } from "lucide-react";
 import { useEffect } from "react";
+import { cn } from "./components/ui/utils";
 
 export default function Root() {
   const location = useLocation();
-  
-  // Smooth scroll reset on route change
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#2B2E34] font-['IBM_Plex_Sans'] antialiased overflow-x-hidden selection:bg-[#FF6A13] selection:text-white">
-      {/* Top Fixed Navigation - Agency Mode / Public Mode */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center text-[10px] tracking-widest uppercase font-['IBM_Plex_Mono'] bg-[#0B0C0F] text-[#F7F7F5] border-b border-[#2B2E34]">
-        <div className="flex items-center gap-3">
-          <Orbit className="w-4 h-4 text-[#FF6A13]" />
-          <span className="font-semibold">LUNAR ADVANCE™</span>
-        </div>
-        
-        <div className="flex items-center gap-6 border border-[#2B2E34] rounded-full px-1 py-1 bg-[#1A1C23]">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `px-4 py-2 rounded-full transition-all duration-300 ${isActive ? "bg-[#F7F7F5] text-[#0B0C0F] font-semibold" : "text-[#D1D4D6] hover:text-white"}`
-            }
-          >
-            Public View
-          </NavLink>
-          <NavLink
-            to="/brand"
-            className={({ isActive }) =>
-              `px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${isActive ? "bg-[#F7F7F5] text-[#0B0C0F] font-semibold" : "text-[#D1D4D6] hover:text-white"}`
-            }
-          >
-            Agency Brief <Compass className="w-3 h-3" />
-          </NavLink>
-        </div>
-        
-        <div className="hidden md:flex items-center gap-2 text-[#D1D4D6]/70">
-          <span>Keystone Space Holdings</span>
-        </div>
-      </nav>
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(
+      "px-4 py-2.5 text-[10px] font-mono uppercase tracking-[0.2em] transition-colors border border-lunar-grey/50",
+      isActive
+        ? "bg-paper text-charcoal"
+        : "text-lunar-grey hover:text-paper"
+    );
 
-      {/* Main Content Area */}
-      <main className="w-full pt-[72px]">
+  return (
+    <div className="min-h-screen bg-paper text-charcoal font-sans antialiased overflow-x-hidden selection:bg-safety-orange selection:text-paper">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 border-b border-lunar-grey/80 bg-vacuum text-paper"
+        role="banner"
+      >
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-8 lg:px-12">
+          <div className="flex min-w-0 items-center gap-3">
+            <span
+              className="font-mono text-[9px] uppercase tracking-[0.35em] text-safety-orange"
+              aria-hidden
+            >
+              ┃
+            </span>
+            <div className="min-w-0">
+              <p className="truncate font-mono text-[9px] uppercase tracking-[0.25em] text-lunar-grey">
+                Keystone Space Holdings
+              </p>
+              <p className="truncate font-sans text-sm font-semibold tracking-tight text-paper md:text-base">
+                LUNAR ADVANCE™
+              </p>
+            </div>
+          </div>
+
+          <nav
+            className="flex w-full items-center justify-start md:w-auto md:justify-center"
+            aria-label="Primary"
+          >
+            <div className="inline-flex w-full max-w-md border border-lunar-grey/40 md:w-auto md:max-w-none">
+              <NavLink to="/" end className={linkClass}>
+                Public program
+              </NavLink>
+              <NavLink to="/brand" className={linkClass}>
+                Brand system
+              </NavLink>
+            </div>
+          </nav>
+
+          <div className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-lunar-grey/80 lg:block">
+            <span className="text-lunar-grey">Doc ref.</span>{" "}
+            <span className="text-paper/90">LA-MBB-04</span>
+          </div>
+        </div>
+      </header>
+
+      <main id="main" className="w-full pt-28 md:pt-20">
         <Outlet />
       </main>
     </div>

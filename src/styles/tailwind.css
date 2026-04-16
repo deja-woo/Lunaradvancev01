@@ -2,3 +2,16 @@
 @source '../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
+
+/* LUNAR ADVANCE™ — documentary neutral + single operational accent */
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  --color-paper: #f7f7f5;
+  --color-lunar-grey: #d1d4d6;
+  --color-charcoal: #2b2e34;
+  --color-vacuum: #0b0c0f;
+  --color-vacuum-elevated: #1a1c23;
+  --color-safety-orange: #ff6a13;
+}
