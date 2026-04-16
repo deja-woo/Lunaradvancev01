@@ -120,6 +120,52 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@layer components {
+  .la-page-shell {
+    @apply relative w-full bg-paper text-charcoal font-sans selection:bg-safety-orange selection:text-paper;
+  }
+
+  .la-section {
+    @apply border-b border-lunar-grey px-6 py-24 md:px-12 lg:px-24;
+  }
+
+  .la-section-compact {
+    @apply border-b border-lunar-grey px-6 py-16 md:px-12 lg:px-24;
+  }
+
+  .la-container {
+    @apply mx-auto max-w-7xl;
+  }
+
+  .la-grid-12 {
+    @apply grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16;
+  }
+
+  .la-kicker {
+    @apply font-mono text-[10px] uppercase tracking-[0.28em];
+  }
+
+  .la-kicker-muted {
+    @apply font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal/60;
+  }
+
+  .la-rule-label {
+    @apply flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em];
+  }
+
+  .la-body {
+    @apply leading-relaxed;
+  }
+
+  .la-body-muted {
+    @apply leading-relaxed text-charcoal/80;
+  }
+
+  .la-caption {
+    @apply font-mono text-[10px] uppercase tracking-wider;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

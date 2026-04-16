@@ -65,17 +65,22 @@ export default function Lander() {
     offset: ["start start", "end end"],
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 0.25], ["0%", "8%"]);
+  const heroImageY = useTransform(scrollYProgress, [0, 0.35], ["0%", "16%"]);
+  const heroContentY = useTransform(scrollYProgress, [0, 0.22], ["0%", "6%"]);
+  const heroImageScale = useTransform(scrollYProgress, [0, 0.35], [1.08, 1]);
   const opacityFade = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-paper text-charcoal font-sans selection:bg-safety-orange selection:text-paper"
+      className="la-page-shell"
     >
       {/* Hero — big quiet image field, metadata anchored */}
-      <section className="relative flex min-h-[calc(100vh-5rem)] w-full flex-col justify-between overflow-hidden bg-vacuum">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
+      <section className="sticky top-0 flex min-h-[calc(100vh-5rem)] w-full flex-col justify-between overflow-hidden bg-vacuum">
+        <motion.div
+          style={{ y: heroImageY, scale: heroImageScale }}
+          className="absolute inset-0 z-0"
+        >
           <div
             className="absolute inset-0 z-10 bg-gradient-to-t from-vacuum via-vacuum/20 to-transparent"
             aria-hidden
@@ -87,20 +92,23 @@ export default function Lander() {
           />
         </motion.div>
 
-        <div className="relative z-10 mt-20 px-6 md:mt-24 md:px-12 lg:px-24">
+        <motion.div
+          style={{ y: heroContentY }}
+          className="relative z-10 mt-20 px-6 md:mt-24 md:px-12 lg:px-24"
+        >
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl space-y-6"
           >
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-lunar-grey">
-              Program umbrella · LUNAR ADVANCE™
+            <p className="la-kicker text-[18px] text-lunar-grey">
+              LUNAR ADVANCE™
             </p>
             <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight text-paper md:text-6xl lg:text-7xl">
               We do not &ldquo;go&rdquo; to the Moon.
               <br />
-              We extend continuity to it.
+              <p className="text-lg font-normal leading-relaxed text-lunar-grey md:text-xl">We extend continuity to it.</p>
             </h1>
             <p className="max-w-xl text-lg font-normal leading-relaxed text-lunar-grey md:text-xl">
               LUNAR ADVANCE™ extends Earth&rsquo;s supply chains, energy systems,
@@ -109,7 +117,7 @@ export default function Lander() {
               inside the operational envelope.
             </p>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           style={{ opacity: opacityFade }}
@@ -130,13 +138,13 @@ export default function Lander() {
 
       {/* Sample headlines — alternate bank */}
       <section
-        className="border-b border-lunar-grey bg-paper px-6 py-12 md:px-12 lg:px-24"
+        className="relative z-20 -mt-16 rounded-t-[2rem] border-y border-lunar-grey bg-paper px-6 py-12 shadow-[0_-24px_80px_rgba(11,12,15,0.22)] md:-mt-20 md:px-12 md:pt-16 lg:px-24"
         aria-labelledby="headlines-label"
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="la-container">
           <p
             id="headlines-label"
-            className="mb-6 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal/60"
+            className="la-kicker-muted mb-6"
           >
             Approved headline bank
           </p>
@@ -150,7 +158,7 @@ export default function Lander() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 font-mono text-[10px] uppercase tracking-widest text-charcoal/45">
+          <p className="la-caption mt-8 text-charcoal/45">
             Alternate: Governed expansion. / Measured risk. Durable return. /
             Stewardship at lunar scale.
           </p>
@@ -158,8 +166,8 @@ export default function Lander() {
       </section>
 
       {/* Pillar 01 + image */}
-      <section className="border-b border-lunar-grey px-6 py-24 md:px-12 lg:px-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+      <section className="la-section">
+        <div className="la-container la-grid-12">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +175,7 @@ export default function Lander() {
             transition={{ duration: 0.9 }}
             className="flex flex-col justify-center gap-8 md:col-span-5"
           >
-            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
+            <div className="la-rule-label text-charcoal">
               <span>01</span>
               <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Frontier Market</span>
@@ -175,7 +183,7 @@ export default function Lander() {
             <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-4xl">
               Managed growth. Risk modeled and systematized.
             </h2>
-            <p className="leading-relaxed text-charcoal/80">
+            <p className="la-body-muted">
               The Moon becomes a capital destination defined by long-horizon asset
               classes: transport corridors, energy capture, communications relays,
               and habitat real estate. Risk is not eliminated; it is governed.
@@ -184,14 +192,14 @@ export default function Lander() {
               <div className="space-y-2">
                 <Target className="h-4 w-4 text-safety-orange" aria-hidden />
                 <h3 className="text-sm font-semibold">Asset classes</h3>
-                <p className="font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+                <p className="la-caption text-charcoal/55">
                   Class A corridors
                 </p>
               </div>
               <div className="space-y-2">
                 <Box className="h-4 w-4 text-safety-orange" aria-hidden />
                 <h3 className="text-sm font-semibold">Modeled exposure</h3>
-                <p className="font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+                <p className="la-caption text-charcoal/55">
                   Regolith futures
                 </p>
               </div>
@@ -216,7 +224,7 @@ export default function Lander() {
                 aria-hidden
               />
             </div>
-            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+            <p className="la-caption mt-3 text-charcoal/55">
               Fig 1.1 — Topographical asset survey · Sector 04
             </p>
           </motion.div>
@@ -224,8 +232,8 @@ export default function Lander() {
       </section>
 
       {/* Pillar 02 — night field */}
-      <section className="border-b border-lunar-grey bg-vacuum px-6 py-24 text-paper md:px-12 lg:px-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16">
+      <section className="la-section bg-vacuum text-paper">
+        <div className="la-container la-grid-12 items-center">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -244,7 +252,7 @@ export default function Lander() {
                 aria-hidden
               />
             </div>
-            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-lunar-grey/80">
+            <p className="la-caption mt-3 text-lunar-grey/80">
               Fig 2.4 — Human-centered performance envelope · Routine assessment
             </p>
           </motion.div>
@@ -256,7 +264,7 @@ export default function Lander() {
             transition={{ duration: 0.9 }}
             className="order-1 flex flex-col justify-center gap-8 md:order-2 md:col-span-5"
           >
-            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-lunar-grey">
+            <div className="la-rule-label text-lunar-grey">
               <span>02</span>
               <span className="h-px w-8 bg-lunar-grey" aria-hidden />
               <span>Lifestyle Upgrade</span>
@@ -264,7 +272,7 @@ export default function Lander() {
             <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
               Measurable living outcomes.
             </h2>
-            <p className="leading-relaxed text-lunar-grey">
+            <p className="la-body text-lunar-grey">
               Settlement is improved conditions for defined roles: science,
               operations, governance, family support. Controlled environments,
               health monitoring, and clean-sheet planning make &ldquo;better
@@ -282,10 +290,10 @@ export default function Lander() {
       </section>
 
       {/* Pillar 03 — infrastructure */}
-      <section className="border-b border-lunar-grey px-6 py-24 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-7xl space-y-16">
+      <section className="la-section">
+        <div className="la-container space-y-16">
           <div className="max-w-3xl">
-            <div className="mb-6 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
+            <div className="la-rule-label mb-6 text-charcoal">
               <span>03</span>
               <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Infrastructure Opportunity</span>
@@ -293,7 +301,7 @@ export default function Lander() {
             <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-5xl">
               Standards, interoperability, and civil partnerships.
             </h2>
-            <p className="mt-6 leading-relaxed text-charcoal/80">
+            <p className="la-body-muted mt-6">
               The Moon is a jurisdiction of systems—not a territory. Ports,
               corridors, and continuity facilities scale when protocols align.
             </p>
@@ -305,7 +313,7 @@ export default function Lander() {
               <h3 className="text-lg font-semibold text-charcoal">
                 Ports &amp; corridors
               </h3>
-              <p className="text-sm leading-relaxed text-charcoal/80">
+              <p className="la-body text-sm text-charcoal/80">
                 Transport and logistics follow published interfaces. Growth reads as
                 engineering, not spectacle.
               </p>
@@ -315,7 +323,7 @@ export default function Lander() {
               <h3 className="text-lg font-semibold text-charcoal">
                 Continuity facilities
               </h3>
-              <p className="text-sm leading-relaxed text-charcoal/80">
+              <p className="la-body text-sm text-charcoal/80">
                 Safeguarding knowledge and diversifying supply chains supports
                 species continuity with procedural clarity.
               </p>
@@ -325,7 +333,7 @@ export default function Lander() {
               <h3 className="text-lg font-semibold text-charcoal">
                 Public–private baseline
               </h3>
-              <p className="text-sm leading-relaxed text-charcoal/80">
+              <p className="la-body text-sm text-charcoal/80">
                 Unified protocols bridge multilateral governance with enterprise
                 uptime requirements.
               </p>
@@ -336,12 +344,12 @@ export default function Lander() {
 
       {/* Housed brands — Keystone architecture */}
       <section
-        className="border-b border-lunar-grey bg-paper px-6 py-24 md:px-12 lg:px-24"
+        className="la-section bg-paper"
         aria-labelledby="housed-heading"
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="la-container">
           <div className="mb-12 max-w-3xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal/60">
+            <p className="la-kicker-muted">
               Keystone architecture
             </p>
             <h2
@@ -350,7 +358,7 @@ export default function Lander() {
             >
               Housed programs &amp; products
             </h2>
-            <p className="mt-4 leading-relaxed text-charcoal/80">
+            <p className="la-body-muted mt-4">
               Each line operates under the LUNAR ADVANCE™ umbrella with its own
               procurement posture—shared governance, discrete accountabilities.
             </p>
@@ -363,7 +371,7 @@ export default function Lander() {
               >
                 <Icon className="h-4 w-4 text-safety-orange" aria-hidden />
                 <p className="font-semibold leading-snug text-charcoal">{name}</p>
-                <p className="font-mono text-[10px] uppercase leading-relaxed tracking-wider text-charcoal/55">
+                <p className="la-caption la-body text-charcoal/55">
                   {role}
                 </p>
               </li>
@@ -373,8 +381,8 @@ export default function Lander() {
       </section>
 
       {/* Pillar 04 — moral inevitability */}
-      <section className="border-b border-lunar-grey bg-lunar-grey/25 px-6 py-24 md:px-12 lg:px-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16">
+      <section className="la-section bg-lunar-grey/25">
+        <div className="la-container la-grid-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -382,7 +390,7 @@ export default function Lander() {
             transition={{ duration: 0.9 }}
             className="flex flex-col justify-center gap-8 md:col-span-5"
           >
-            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-charcoal">
+            <div className="la-rule-label text-charcoal">
               <span>04</span>
               <span className="h-px w-8 bg-charcoal" aria-hidden />
               <span>Moral Inevitability</span>
@@ -390,7 +398,7 @@ export default function Lander() {
             <h2 className="text-3xl font-semibold leading-tight text-charcoal md:text-4xl">
               Responsibility framed as continuity.
             </h2>
-            <p className="leading-relaxed text-charcoal/80">
+            <p className="la-body-muted">
               Settlement is stewardship: safeguarding knowledge, diversifying
               supply chains, and supporting species continuity. The moral case is
               stated—not debated. We commit to responsible stewardship,
@@ -416,7 +424,7 @@ export default function Lander() {
                 aria-hidden
               />
             </div>
-            <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-charcoal/55">
+            <p className="la-caption mt-3 text-charcoal/55">
               Fig 4.1 — Population continuity planning · Earth overlay
             </p>
           </motion.div>
@@ -424,8 +432,8 @@ export default function Lander() {
       </section>
 
       {/* Visual metaphor + governance strip */}
-      <section className="border-b border-lunar-grey px-6 py-16 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-7xl font-mono text-[10px] uppercase leading-relaxed tracking-wider text-charcoal/55">
+      <section className="la-section-compact">
+        <div className="la-container la-caption la-body text-charcoal/55">
           <p className="text-charcoal">
             Visual metaphor: <span className="text-charcoal/80">survey + stewardship</span>
             . Imagery is treated as licensed library photography—photoreal, minimally
@@ -435,9 +443,9 @@ export default function Lander() {
         </div>
       </section>
 
-      <footer className="bg-vacuum px-6 py-16 text-lunar-grey md:px-12 lg:px-24">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-12 md:flex-row md:items-end">
-          <div className="space-y-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+      <footer className="la-section-compact bg-vacuum text-lunar-grey">
+        <div className="la-container flex flex-col items-start justify-between gap-12 md:flex-row md:items-end">
+          <div className="la-caption space-y-3 tracking-[0.2em]">
             <p className="font-sans text-xl font-semibold normal-case tracking-tight text-paper">
               Keystone Space Holdings
             </p>
@@ -445,7 +453,7 @@ export default function Lander() {
             <p className="text-lunar-grey/70">Internal reference · 2026</p>
             <p className="mt-4 text-safety-orange">Operational routing</p>
           </div>
-          <div className="max-w-md space-y-3 text-right font-mono text-[10px] uppercase tracking-widest leading-relaxed md:text-right">
+          <div className="la-caption la-body max-w-md space-y-3 text-right md:text-right">
             <p className="text-paper/90">
               &ldquo;Settlement is the operational form of hope.&rdquo;
             </p>

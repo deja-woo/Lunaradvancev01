@@ -55,13 +55,13 @@ export default function Deck() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-paper pt-12 pb-32 font-sans text-charcoal selection:bg-safety-orange selection:text-paper">
+    <div className="la-page-shell min-h-[calc(100vh-5rem)] pt-12 pb-32">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 px-6">
         
         {/* SIDEBAR NAVIGATION */}
         <aside className="hidden lg:block relative">
           <div className="sticky top-24 flex flex-col gap-6 text-sm">
-            <div className="flex items-center gap-2 border-b border-lunar-grey pb-4 font-mono text-[10px] uppercase tracking-widest text-safety-orange">
+            <div className="la-caption flex items-center gap-2 border-b border-lunar-grey pb-4 tracking-widest text-safety-orange">
               <Lock className="w-3 h-3" />
               CONFIDENTIAL: LUNAR ADVANCE™
             </div>
@@ -88,7 +88,7 @@ export default function Deck() {
               ))}
             </nav>
 
-            <div className="mt-8 flex cursor-pointer items-center gap-2 border-t border-lunar-grey pt-6 font-mono text-[10px] uppercase tracking-widest text-charcoal/60 transition-colors hover:text-charcoal">
+            <div className="la-caption mt-8 flex cursor-pointer items-center gap-2 border-t border-lunar-grey pt-6 tracking-widest text-charcoal/60 transition-colors hover:text-charcoal">
               <FileText className="w-4 h-4" />
               Export Brief as PDF
             </div>
@@ -99,7 +99,7 @@ export default function Deck() {
         <main className="space-y-24">
           
           <div className="space-y-8 pt-8 border-b border-lunar-grey pb-12">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-charcoal/60">
+            <div className="la-caption tracking-widest text-charcoal/60">
               Keystone Space Holdings / Board & Agency Direction
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] text-charcoal tracking-tight">
@@ -130,7 +130,7 @@ export default function Deck() {
               </p>
               
               <div className="bg-vacuum text-paper p-8 max-w-3xl">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-lunar-grey mb-4 block">Core Premise</span>
+                <span className="la-caption mb-4 block tracking-widest text-lunar-grey">Core Premise</span>
                 <p className="text-2xl font-semibold leading-relaxed">"We do not 'go' to the Moon.<br/>We extend continuity to it."</p>
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function Deck() {
             <h2 className="text-3xl font-semibold tracking-tight border-b border-lunar-grey pb-4">4) Typography Approach</h2>
             
             <div className="space-y-6">
-              <div className="bg-lunar-grey/30 p-6 max-w-3xl font-mono text-[10px] uppercase tracking-widest text-charcoal/80 leading-loose">
+              <div className="la-caption bg-lunar-grey/30 p-6 max-w-3xl tracking-widest text-charcoal/80 leading-loose">
                 Caption format (example):<br/>
                 <span className="text-charcoal font-semibold">LUNAR ADVANCE™ / Asset Capture / A2-LF-042 / Nearside Ridge Survey / 02:14 UTC / Rev. C</span>
               </div>
@@ -270,7 +270,7 @@ export default function Deck() {
                 <div key={c.hex} className={`p-4 border ${c.border} ${c.bg} ${c.text} flex flex-col justify-between h-32`}>
                   <div>
                     <div className="font-semibold text-sm">{c.name}</div>
-                    <div className="font-mono text-[10px] opacity-70 mt-1">{c.hex}</div>
+                    <div className="la-caption mt-1 opacity-70 normal-case">{c.hex}</div>
                   </div>
                   <div className="text-xs opacity-80">{c.use}</div>
                 </div>

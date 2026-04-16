@@ -18,7 +18,7 @@ export default function Root() {
     );
 
   return (
-    <div className="min-h-screen bg-paper text-charcoal font-sans antialiased overflow-x-hidden selection:bg-safety-orange selection:text-paper">
+    <div className="la-page-shell min-h-screen overflow-x-hidden">
       <header
         className="fixed top-0 left-0 right-0 z-50 border-b border-lunar-grey/80 bg-vacuum text-paper"
         role="banner"
@@ -26,13 +26,13 @@ export default function Root() {
         <div className="mx-auto flex max-w-[1400px] flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-8 lg:px-12">
           <div className="flex min-w-0 items-center gap-3">
             <span
-              className="font-mono text-[9px] uppercase tracking-[0.35em] text-safety-orange"
+              className="la-caption text-[9px] tracking-[0.35em] text-safety-orange"
               aria-hidden
             >
               ┃
             </span>
             <div className="min-w-0">
-              <p className="truncate font-mono text-[9px] uppercase tracking-[0.25em] text-lunar-grey">
+              <p className="la-caption truncate text-[9px] tracking-[0.25em] text-lunar-grey">
                 Keystone Space Holdings
               </p>
               <p className="truncate font-sans text-sm font-semibold tracking-tight text-paper md:text-base">
@@ -55,7 +55,7 @@ export default function Root() {
             </div>
           </nav>
 
-          <div className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-lunar-grey/80 lg:block">
+          <div className="la-caption hidden text-[9px] tracking-[0.2em] text-lunar-grey/80 lg:block">
             <span className="text-lunar-grey">Doc ref.</span>{" "}
             <span className="text-paper/90">LA-MBB-04</span>
           </div>
