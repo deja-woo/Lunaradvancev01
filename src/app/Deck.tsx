@@ -74,11 +74,6 @@ export default function Deck() {
                 </button>
               ))}
             </nav>
-
-            <div className="mt-8 pt-6 border-t border-[#D1D4D6] flex items-center gap-2 text-[#2B2E34]/60 font-['IBM_Plex_Mono'] text-[10px] uppercase tracking-widest hover:text-[#2B2E34] cursor-pointer transition-colors">
-              <FileText className="w-4 h-4" />
-              Export Brief as PDF
-            </div>
           </div>
         </aside>
 
@@ -92,18 +87,6 @@ export default function Deck() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] text-[#2B2E34] tracking-tight">
               LUNAR ADVANCE™ <br />Master Brand Brief
             </h1>
-            <p className="text-[#2B2E34]/80 max-w-2xl text-lg md:text-xl leading-relaxed">
-              Define a cohesive, scalable brand system for a fictional Keystone Space Holdings corporate initiative under the Program Umbrella LUNAR ADVANCE™, designed to secure investor confidence, government partnership, and broad public consent for lunar settlement as near-term infrastructure development—not speculative exploration.
-            </p>
-            <div className="bg-[#E8E8E8] p-6 flex gap-4 items-start border-l-2 border-[#FF6A13] max-w-2xl">
-              <AlertTriangle className="w-5 h-5 text-[#FF6A13] shrink-0 mt-0.5" />
-              <div>
-                <strong className="block text-sm font-semibold mb-1">Key Constraint</strong>
-                <p className="text-sm text-[#2B2E34]/80 leading-relaxed">
-                  Imagery is treated as licensed corporate stock (Artemis II photography), kept photoreal and minimally altered. The work should feel credible, compliant, and inevitable—unsettling precisely because it is sincere.
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* 1. BRAND NARRATIVE */}
