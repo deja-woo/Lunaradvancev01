@@ -1,6 +1,10 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Box, Target, Combine, Database, ShieldAlert, Cpu, Activity, Fingerprint, LocateFixed } from "lucide-react";
 import { useRef } from "react";
+import React from "react";
+import { GlobalCursor } from "./components/ui/GlobalCursor";
+
+
 
 export default function Lander() {
   const containerRef = useRef(null);
@@ -299,12 +303,11 @@ export default function Lander() {
             <span className="text-[#F7F7F5] font-['IBM_Plex_Sans'] text-xl font-bold tracking-widest uppercase mb-4">Keystone Space Holdings</span>
             <span className="text-[#D1D4D6]/60">Program Umbrella: LUNAR ADVANCE™</span>
             <span className="text-[#D1D4D6]/60">Est. 2026 // Off-World Operations</span>
-            <span className="text-[#FF6A13] mt-4 flex items-center gap-2"><Lock className="w-3 h-3"/> Authorized Personnel Only</span>
+            <span className="text-[#FF6A13] mt-4 flex items-center gap-2"> // CLEARED FOR PUBLIC VIEW</span>
           </div>
           <div className="flex flex-col gap-2 md:text-right">
             <span className="text-[#F7F7F5]">"Settlement is the operational form of hope."</span>
-            <span className="text-[#D1D4D6]/40">All imagery licensed via NASA Artemis Protocol.</span>
-            <span className="text-[#D1D4D6]/40">CONFIDENTIAL - DO NOT DISTRIBUTE UNLESS CLASSIFIED</span>
+            <span className="accent-color text-[#FF6A13]">All imagery licensed via NASA Artemis Protocol.</span>
           </div>
         </div>
       </footer>
@@ -312,12 +315,3 @@ export default function Lander() {
   );
 }
 
-// Add Lock icon as it's missing in imports but used in footer
-function Lock({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round" className={className}>
-      <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-    </svg>
-  )
-}
