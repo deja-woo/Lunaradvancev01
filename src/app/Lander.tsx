@@ -352,7 +352,7 @@ const handleMouseMove5 = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
   >
     {/* NODE REVEAL */}
     <img
-      src="src\exploration-settlements-different-planets.jpg"
+      src="https://i.postimg.cc/DfDfphJ5/2151768643.jpg"
       alt=""
       className="absolute inset-0 w-full h-full object-cover contrast-125"
       style={{
