@@ -1,8 +1,10 @@
+import React from "react";
 import { motion } from "motion/react";
 import { Lock, FileText, CheckCircle2, ChevronRight, AlertTriangle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

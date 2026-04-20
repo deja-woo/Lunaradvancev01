@@ -1,6 +1,8 @@
+import React from "react";
 import { Outlet, NavLink, useLocation } from "react-router";
 import { Orbit, Compass } from "lucide-react";
 import { useEffect } from "react";
+
 
 export default function Root() {
   const location = useLocation();

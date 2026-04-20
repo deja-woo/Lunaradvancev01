@@ -184,18 +184,3 @@
   }
 }
 
-/* src/components/animated-cursor.css */
-.animated-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  border: 2px solid white;
-  border-radius: 9999px;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  transition: width 180ms ease, height 180ms ease, opacity 180ms ease;
-  will-change: transform;
-}
