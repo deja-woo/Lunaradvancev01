@@ -332,7 +332,7 @@ const handleMouseMove5 = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
 >
   {/* ── Base image — desaturated default state ── */}
 <img
-  src="src\exploration-settlements-different-planets.jpg"
+  src="https://i.postimg.cc/DfDfphJ5/2151768643.jpg"
   alt="Lunar Habitation Concept"
   className="absolute inset-0 w-full h-full object-cover opacity-30 contrast-120 grayscale"
 />
